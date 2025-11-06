@@ -14,11 +14,220 @@ datasource db {
 }
 
 model User {
+  id                String   @id @default(cuid())
+  email             String   @unique
+  name              String?
+  username          String?  @unique
+  avatar            String?
+  bio               String?
+  location          String?
+  website           String?
+  github            String?
+  twitter           String?
+  linkedin          String?
+  isPremium         Boolean  @default(false)
+  emailVerified     DateTime?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  // Relations
+  projects          Project[]
+  collaborations    Collaboration[]
+  sharedProjects    SharedProject[]
+  templateLikes     TemplateLike[]
+  aiRequests       AIRequest[]
+  sessions          Session[]
+  accounts          Account[]
+  debugSessions     DebugSession[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  language    String
+  code        String
+  isPublic    Boolean  @default(false)
+  stars       Int      @default(0)
+  forks       Int      @default(0)
+  views       Int      @default(0)
+  tags        String   @default("") // JSON string for SQLite
+  difficulty   String?  @default("beginner")
+  authorId    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  author       User           @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  collaborations Collaboration[]
+  sharedProjects SharedProject[]
+  versions     ProjectVersion[]
+  deployments   Deployment[]
+  debugSessions DebugSession[]
+  aiSuggestions AISuggestion[]
+}
+
+model Collaboration {
   id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  projectId String
+  userId    String
+  role      String   @default("viewer") // viewer, editor, admin
+  joinedAt  DateTime @default(now())
+  lastActive DateTime?
+
+  // Relations
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, userId])
+}
+
+model SharedProject {
+  id          String   @id @default(cuid())
+  projectId   String
+  shareId     String    @unique
+  shareType   String    @default("public") // public, private, temporary
+  permissions String    @default("view") // view, comment, edit
+  createdAt   DateTime  @default(now())
+  expiresAt   DateTime?
+  accessCount Int       @default(0)
+  maxAccess   Int?
+  createdBy   String
+
+  // Relations
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [createdBy], references: [id], onDelete: Cascade)
+}
+
+model CodeTemplate {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  category    String
+  language    String
+  code        String
+  authorId    String?
+  stars       Int      @default(0)
+  views       Int      @default(0)
+  downloads   Int      @default(0)
+  tags        String   @default("") // JSON string for SQLite
+  difficulty   String   @default("beginner")
+  isPublic    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  likes TemplateLike[]
+}
+
+model TemplateLike {
+  id         String   @id @default(cuid())
+  templateId String
+  userId     String
+  createdAt  DateTime @default(now())
+
+  // Relations
+  template CodeTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  user     User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([templateId, userId])
+}
+
+model ProjectVersion {
+  id          String   @id @default(cuid())
+  projectId   String
+  version     String
+  code        String
+  message     String?
+  authorId    String
+  createdAt   DateTime @default(now())
+
+  // Relations
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model Deployment {
+  id          String   @id @default(cuid())
+  projectId   String
+  platform    String   // vercel, netlify, aws, etc.
+  url         String?
+  status      String   @default("pending") // pending, success, failed
+  deployedAt  DateTime?
+  createdAt   DateTime @default(now())
+
+  // Relations
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model AIRequest {
+  id          String   @id @default(cuid())
+  userId      String
+  type        String   // completion, debug, optimization, generation
+  input       String
+  output      String?
+  tokens      Int?
+  latency     Int?
+  success     Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model AISuggestion {
+  id          String   @id @default(cuid())
+  projectId   String
+  type        String   // completion, refactoring, optimization
+  suggestion  String
+  confidence  Float?
+  applied     Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  // Relations
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model DebugSession {
+  id          String   @id @default(cuid())
+  projectId   String
+  userId      String
+  breakpoints String   @default("") // JSON string for SQLite
+  variables   String?   // JSON string for SQLite
+  console     String   @default("") // JSON string for SQLite
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Post {
