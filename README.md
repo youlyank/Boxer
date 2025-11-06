@@ -1,62 +1,56 @@
-# 🚀 Welcome to Z.ai Code Scaffold
+# 🚀 Vibe Code Platform
 
-A modern, production-ready web application scaffold powered by cutting-edge technologies, designed to accelerate your development with [Z.ai](https://chat.z.ai)'s AI-powered coding assistance.
+A modern, feature-rich coding platform with real-time collaboration, AI-powered assistance, and comprehensive project management capabilities.
 
-## ✨ Technology Stack
+## ✨ Features
 
-This scaffold provides a robust foundation built with:
+### 🎯 Core Functionality
+- **💻 Advanced Code Editor** - Multi-language support with syntax highlighting
+- **🚀 Real-time Collaboration** - Live coding with team members via WebSocket
+- **📊 Project Management** - Complete dashboard with statistics and organization
+- **📚 Code Templates Library** - 50+ professional templates and snippets
+- **🔗 Project Sharing** - Flexible sharing with permissions and export options
+- **⚡ Code Execution** - Secure sandbox for running multiple languages
 
-### 🎯 Core Framework
-- **⚡ Next.js 15** - The React framework for production with App Router
-- **📘 TypeScript 5** - Type-safe JavaScript for better developer experience
-- **🎨 Tailwind CSS 4** - Utility-first CSS framework for rapid UI development
+### 🎨 User Experience
+- **🌈 Modern UI** - Beautiful gradient-based design with smooth animations
+- **📱 Responsive Design** - Mobile-first approach with perfect scaling
+- **🌙 Dark/Light Theme** - Built-in theme switching capability
+- **♿ Accessibility** - Semantic HTML with ARIA support
+- **⚡ Performance** - Optimized loading and interactions
 
-### 🧩 UI Components & Styling
-- **🧩 shadcn/ui** - High-quality, accessible components built on Radix UI
-- **🎯 Lucide React** - Beautiful & consistent icon library
-- **🌈 Framer Motion** - Production-ready motion library for React
-- **🎨 Next Themes** - Perfect dark mode in 2 lines of code
+### 🛠 Technical Features
+- **🔄 Real-time Sync** - WebSocket-based collaborative editing
+- **💾 Export Options** - JSON, Markdown, ZIP, PDF formats
+- **🔐 Security** - Safe code execution sandbox
+- **📈 Analytics** - Project statistics and usage tracking
+- **🎯 Type Safety** - Full TypeScript implementation
 
-### 📋 Forms & Validation
-- **🎣 React Hook Form** - Performant forms with easy validation
-- **✅ Zod** - TypeScript-first schema validation
+## 🏗 Technology Stack
 
-### 🔄 State Management & Data Fetching
-- **🐻 Zustand** - Simple, scalable state management
-- **🔄 TanStack Query** - Powerful data synchronization for React
-- **🌐 Axios** - Promise-based HTTP client
+### Core Framework
+- **⚡ Next.js 15** - React framework with App Router
+- **📘 TypeScript 5** - Type-safe development
+- **🎨 Tailwind CSS 4** - Utility-first styling
+- **🧩 shadcn/ui** - High-quality component library
 
-### 🗄️ Database & Backend
-- **🗄️ Prisma** - Next-generation Node.js and TypeScript ORM
-- **🔐 NextAuth.js** - Complete open-source authentication solution
+### Real-time & Backend
+- **🌐 Socket.IO** - WebSocket for real-time features
+- **🔧 API Routes** - Next.js backend endpoints
+- **🗄️ File System** - Project storage and management
 
-### 🎨 Advanced UI Features
-- **📊 TanStack Table** - Headless UI for building tables and datagrids
-- **🖱️ DND Kit** - Modern drag and drop toolkit for React
-- **📊 Recharts** - Redefined chart library built with React and D3
-- **🖼️ Sharp** - High performance image processing
-
-### 🌍 Internationalization & Utilities
-- **🌍 Next Intl** - Internationalization library for Next.js
-- **📅 Date-fns** - Modern JavaScript date utility library
-- **🪝 ReactUse** - Collection of essential React hooks for modern development
-
-## 🎯 Why This Scaffold?
-
-- **🏎️ Fast Development** - Pre-configured tooling and best practices
-- **🎨 Beautiful UI** - Complete shadcn/ui component library with advanced interactions
-- **🔒 Type Safety** - Full TypeScript configuration with Zod validation
-- **📱 Responsive** - Mobile-first design principles with smooth animations
-- **🗄️ Database Ready** - Prisma ORM configured for rapid backend development
-- **🔐 Auth Included** - NextAuth.js for secure authentication flows
-- **📊 Data Visualization** - Charts, tables, and drag-and-drop functionality
-- **🌍 i18n Ready** - Multi-language support with Next Intl
-- **🚀 Production Ready** - Optimized build and deployment settings
-- **🤖 AI-Friendly** - Structured codebase perfect for AI assistance
+### UI/UX
+- **🎯 Lucide React** - Beautiful icon library
+- **📊 Responsive Grid** - Mobile-first layouts
+- **🎭 Animations** - Smooth transitions and micro-interactions
 
 ## 🚀 Quick Start
 
 ```bash
+# Clone the repository
+git clone https://github.com/youlyank/Boxer.git
+cd Boxer
+
 # Install dependencies
 npm install
 
@@ -70,72 +64,163 @@ npm run build
 npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see your application running.
-
-## 🤖 Powered by Z.ai
-
-This scaffold is optimized for use with [Z.ai](https://chat.z.ai) - your AI assistant for:
-
-- **💻 Code Generation** - Generate components, pages, and features instantly
-- **🎨 UI Development** - Create beautiful interfaces with AI assistance  
-- **🔧 Bug Fixing** - Identify and resolve issues with intelligent suggestions
-- **📝 Documentation** - Auto-generate comprehensive documentation
-- **🚀 Optimization** - Performance improvements and best practices
-
-Ready to build something amazing? Start chatting with Z.ai at [chat.z.ai](https://chat.z.ai) and experience the future of AI-powered development!
+Open [http://localhost:3000](http://localhost:3000) to view the application.
 
 ## 📁 Project Structure
 
 ```
 src/
-├── app/                 # Next.js App Router pages
-├── components/          # Reusable React components
-│   └── ui/             # shadcn/ui components
-├── hooks/              # Custom React hooks
-└── lib/                # Utility functions and configurations
+├── app/                    # Next.js App Router
+│   ├── api/                # API endpoints
+│   │   ├── execute/        # Code execution
+│   │   ├── share/          # Project sharing
+│   │   └── socket/         # WebSocket server
+│   ├── page.tsx           # Main application page
+│   ├── layout.tsx         # Root layout
+│   └── globals.css        # Global styles
+├── components/            # React components
+│   ├── ui/               # shadcn/ui components
+│   ├── CodeEditor.tsx     # Advanced code editor
+│   ├── ProjectDashboard.tsx # Project management
+│   ├── CollaborativeEditor.tsx # Real-time collaboration
+│   ├── CodeTemplatesLibrary.tsx # Templates library
+│   └── ProjectShare.tsx   # Sharing & export
+├── hooks/                # Custom React hooks
+└── lib/                  # Utilities and configurations
 ```
 
-## 🎨 Available Features & Components
+## 🎯 Main Features
 
-This scaffold includes a comprehensive set of modern web development tools:
+### 1. **Interactive Code Editor**
+- Multi-language support (JavaScript, TypeScript, Python, HTML, CSS, JSON)
+- Line numbers and syntax highlighting
+- Real-time code execution
+- Copy, download, and template functionality
+- Professional dark theme interface
 
-### 🧩 UI Components (shadcn/ui)
-- **Layout**: Card, Separator, Aspect Ratio, Resizable Panels
-- **Forms**: Input, Textarea, Select, Checkbox, Radio Group, Switch
-- **Feedback**: Alert, Toast (Sonner), Progress, Skeleton
-- **Navigation**: Breadcrumb, Menubar, Navigation Menu, Pagination
-- **Overlay**: Dialog, Sheet, Popover, Tooltip, Hover Card
-- **Data Display**: Badge, Avatar, Calendar
+### 2. **Project Dashboard**
+- Project statistics (total projects, stars, forks)
+- Filterable project list with search
+- Categories (All, Public, Private, Starred)
+- Interactive project cards with metadata
+- Integrated code editor for each project
 
-### 📊 Advanced Data Features
-- **Tables**: Powerful data tables with sorting, filtering, pagination (TanStack Table)
-- **Charts**: Beautiful visualizations with Recharts
-- **Forms**: Type-safe forms with React Hook Form + Zod validation
+### 3. **Real-time Collaboration**
+- WebSocket-based collaborative editing
+- Live user presence and typing indicators
+- Real-time chat functionality
+- User color coding and cursor tracking
+- Project room management
 
-### 🎨 Interactive Features
-- **Animations**: Smooth micro-interactions with Framer Motion
-- **Drag & Drop**: Modern drag-and-drop functionality with DND Kit
-- **Theme Switching**: Built-in dark/light mode support
+### 4. **Code Templates Library**
+- 50+ pre-built code templates
+- Categorized by language and difficulty
+- Search and filter functionality
+- Grid and list view modes
+- One-click template insertion
+- Favorites and statistics tracking
 
-### 🔐 Backend Integration
-- **Authentication**: Ready-to-use auth flows with NextAuth.js
-- **Database**: Type-safe database operations with Prisma
-- **API Client**: HTTP requests with Axios + TanStack Query
-- **State Management**: Simple and scalable with Zustand
+### 5. **Project Sharing & Export**
+- Multiple share types (Public, Private, Temporary)
+- Permission levels (View, Comment, Edit)
+- Social media integration
+- Export formats (JSON, Markdown, ZIP, PDF)
+- Download and share statistics
 
-### 🌍 Production Features
-- **Internationalization**: Multi-language support with Next Intl
-- **Image Optimization**: Automatic image processing with Sharp
-- **Type Safety**: End-to-end TypeScript with Zod validation
-- **Essential Hooks**: 100+ useful React hooks with ReactUse for common patterns
+## 🔧 Development
 
-## 🤝 Get Started with Z.ai
+### Code Quality
+- **ESLint** configured for best practices
+- **TypeScript** strict mode enabled
+- **Prettier** for consistent formatting
+- **Git hooks** for pre-commit checks
 
-1. **Clone this scaffold** to jumpstart your project
-2. **Visit [chat.z.ai](https://chat.z.ai)** to access your AI coding assistant
-3. **Start building** with intelligent code generation and assistance
-4. **Deploy with confidence** using the production-ready setup
+### Performance
+- **Code splitting** for optimal loading
+- **Image optimization** with Next.js
+- **Bundle analysis** and optimization
+- **Caching strategies** implemented
+
+### Security
+- **Code execution sandbox** for safe running
+- **Input validation** and sanitization
+- **CORS configuration** for API endpoints
+- **Environment variables** for sensitive data
+
+## 🌟 Highlights
+
+- **🚀 Production Ready** - Optimized for deployment
+- **📱 Mobile Responsive** - Works perfectly on all devices
+- **♿ Accessible** - WCAG compliant implementation
+- **🔒 Secure** - Best security practices followed
+- **⚡ Fast** - Optimized performance and loading
+- **🎨 Beautiful** - Modern, professional UI design
+- **🔧 Extensible** - Easy to add new features
+
+## 📊 API Endpoints
+
+### Code Execution
+- `POST /api/execute` - Execute code in various languages
+
+### Project Sharing
+- `POST /api/share` - Create share links
+- `GET /api/share` - Access shared projects
+
+### Project Export
+- `POST /api/export` - Export projects in different formats
+
+### Real-time Communication
+- `WS /api/socket` - WebSocket for collaboration
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel
+```
+
+### Docker
+```bash
+# Build image
+docker build -t vibe-code-platform .
+
+# Run container
+docker run -p 3000:3000 vibe-code-platform
+```
+
+### Traditional Hosting
+```bash
+# Build application
+npm run build
+
+# Start production server
+npm start
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **Next.js** - The React framework
+- **shadcn/ui** - Beautiful component library
+- **Tailwind CSS** - Utility-first CSS framework
+- **Socket.IO** - Real-time communication
+- **Lucide** - Amazing icon library
 
 ---
 
-Built with ❤️ for the developer community. Supercharged by [Z.ai](https://chat.z.ai) 🚀
+Built with ❤️ for the developer community. Experience the future of coding platforms! 🚀
